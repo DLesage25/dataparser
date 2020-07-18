@@ -1,7 +1,9 @@
 import React from 'react';
-import FileUploader from './Components/FileUploader';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import { BrowserRouter } from 'react-router-dom';
+
+import Router from './Components/Router/index';
 
 const useStyles = makeStyles(() => ({
     panel: {
@@ -24,11 +26,13 @@ const useStyles = makeStyles(() => ({
 const App = () => {
     const classes = useStyles();
     return (
-        <div className={classes.app}>
-            <Paper className={classes.panel} elevation={3}>
-                <FileUploader />
-            </Paper>
-        </div>
+        <BrowserRouter>
+            <div className={classes.app}>
+                <Paper className={classes.panel} elevation={3}>
+                    <Router />
+                </Paper>
+            </div>
+        </BrowserRouter>
     );
 };
 

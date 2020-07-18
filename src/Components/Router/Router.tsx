@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 
 import { withRouter, Switch } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
@@ -22,15 +22,17 @@ const Router = ({ location }: { location: any }) => {
     );
 
     useEffect(() => {
-        const routeSettingsCheck = () => {
+        const routeCheck = () => {
             setMatchedRoute(matched ? matched.route : null);
         };
-        routeSettingsCheck();
+        routeCheck();
     }, [pathname, matched]);
 
     return (
         <Layout pageTitle={matchedRoute ? matchedRoute.title : 'N/A'}>
-            <Switch>{renderRoutes(routes)}</Switch>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Switch>{renderRoutes(routes)}</Switch>
+            </Suspense>
         </Layout>
     );
 };
