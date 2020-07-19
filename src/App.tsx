@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 
-import Router from './Components/Router/index';
+import AppRouter from './Components/AppRouter';
 
 const useStyles = makeStyles(() => ({
     panel: {
@@ -26,13 +26,11 @@ const useStyles = makeStyles(() => ({
 const App = () => {
     const classes = useStyles();
     return (
-        <BrowserRouter>
-            <div className={classes.app}>
-                <Paper className={classes.panel} elevation={3}>
-                    <Router />
-                </Paper>
-            </div>
-        </BrowserRouter>
+        <div className={classes.app}>
+            <Paper className={classes.panel} elevation={3}>
+                <AppRouter />
+            </Paper>
+        </div>
     );
 };
 

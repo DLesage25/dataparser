@@ -13,12 +13,22 @@
     "@types/react-dom": "^16.9.8",
     "axios": "^0.19.2",
     "clsx": "^1.1.1",
+    "connected-react-router": "^6.8.0",
+    "history": "^4.10.1",
     "jsonfile": "^6.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-json-view": "^1.19.1",
+    "react-redux": "^7.2.0",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-promise": "^0.6.0",
+    "redux-promise-middleware": "^6.1.2",
+    "redux-thunk": "^2.3.0",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -43,7 +53,9 @@
     ]
   },
   "devDependencies": {
+    "@types/react-redux": "^7.1.9",
     "@types/react-router-config": "^5.0.1",
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "@types/redux-promise": "^0.5.29"
   }
 }

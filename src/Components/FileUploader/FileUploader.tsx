@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+
+import { RootState } from '../../Store';
+
+import { uploadFile } from '../../Store/Actions/fileActions';
 
 import Dropzone from '../Dropzone';
 import Progress from '../Progress';
@@ -40,7 +45,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const FileUploader = () => {
+    const dispatch = useDispatch();
     const classes = useStyles();
+    const { fileUploaded } = useSelector(
+        (state: RootState) => state.fileReducer
+    );
     const [files, setFiles]: [any, any] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [uploadProgress, setUploadProgress]: [any, any] = useState({});
@@ -49,13 +58,14 @@ const FileUploader = () => {
     const onNewFiles = (newFiles: any[]) => {
         setFiles(files.concat(newFiles));
     };
-    const processFiles = async () => {
+    const initFileUpload = async () => {
         setUploadProgress({});
         setUploading(true);
-        const promises: Promise<void>[] = [];
+        const promises: Promise<(dispatch: any) => Promise<void>>[] = [];
         files.forEach((file: any) => {
-            promises.push(sendRequest(file));
+            promises.push(dispatch(uploadFile(file)));
         });
+
         try {
             await Promise.all(promises);
 
@@ -67,14 +77,7 @@ const FileUploader = () => {
             setUploading(false);
         }
     };
-    const sendRequest = async (file: any) => {
-        const reader = new FileReader();
 
-        reader.onload = (evt: any) => {
-            if (evt.target) console.log(evt.target.result);
-        };
-        reader.readAsText(file);
-    };
     const renderActions = () => {
         if (success) {
             return (
@@ -91,7 +94,7 @@ const FileUploader = () => {
             return (
                 <Button
                     disabled={files.length < 0 || uploading}
-                    onClick={processFiles}
+                    onClick={initFileUpload}
                     variant="contained"
                 >
                     Upload
@@ -149,6 +152,7 @@ const FileUploader = () => {
                                 container
                                 key={file.name}
                                 className={classes.row}
+                                direction="column"
                             >
                                 <span className={classes.filename}>
                                     {file.name}

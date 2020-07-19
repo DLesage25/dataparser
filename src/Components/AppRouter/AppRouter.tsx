@@ -8,12 +8,13 @@ import Layout from '../Layout';
 const routes = [
     {
         path: '/',
-        component: React.lazy(() => import('../FileUploader')),
-        title: 'Upload Files',
+        component: React.lazy(() => import('../Stepper')),
+        title: 'JSON Transformer',
+        // exact: true,
     },
 ];
 
-const Router = ({ location }: { location: any }) => {
+const AppRouter = ({ location }: { location: any }) => {
     const { pathname } = location;
 
     const matched = matchRoutes(routes, pathname)[0];
@@ -37,4 +38,4 @@ const Router = ({ location }: { location: any }) => {
     );
 };
 
-export default withRouter(Router);
+export default withRouter(AppRouter);
