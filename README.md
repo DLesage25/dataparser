@@ -1,4 +1,4 @@
-Typescript + React/Redux JSON to CSV parser
+##### Typescript + React/Redux JSON to CSV parser
 
 Allows the manipulation of a complex JSON tree and separates tree nodes into indexes that can then be parsed in to CSV files. 
 
